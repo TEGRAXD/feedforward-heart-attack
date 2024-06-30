@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <title>IMPLEMENTASI FEEDFORWARD TERHADAP HEART ATTACK ANALYSIS</title>
+  </head>
+  <body
+    class="h-100 d-flex flex-row justify-content-center align-items-center p-8 min-h-screen bg-blue-900 text-gray-800"
+  >
+    <nav class="bg-gray-100 rounded-md">
+      <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div class="relative flex h-16 items-center justify-between">
+          <div
+            class="flex flex-1 items-center justify-center sm:items-stretch"
+          >
+            <div class="hidden sm:ml-6 sm:block">
+              <div class="flex space-x-4">
+                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                <a
+                  href="{{ url_for('index') }}"
+                  class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                  aria-current="page"
+                  >Feedforward</a
+                >
+                
+              </div>
+            </div>
+          </div>
+          <div
+            class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+          >
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div
+      class="d-flex flex-column justify-around bg-white p-8 rounded-lg mt-8 text-2xl"
+    >
+      <h3 class="badge bg-primary align-self-start flex-column font-bold mb-4">
+        IMPLEMENTASI FEEDFORWARD TERHADAP HEART ATTACK ANALYSIS
+        <hr />
+      </h3>
+
+      <div class="text-base font-bold mb-4">
+        <h3>Oleh :</h3>
+        <h3>1. Muhammad Ferianto (1462100035)</h3>
+        <h3>2. Tegar Bangun Suganda (1462100043)</h3>
+        <h3>3. Muhammad Santriko (1462100192)</h3>
+        <h3>4. Erick Dewa Pranata (1462100243)</h3>
+      </div>
+
+      <div class="text-base font-bold mb-4">
+        <h3>Mata Kuliah :</h3>
+        <h3>Deep Learning (R)</h3>
+      </div>
+
+      <div class="text-base font-bold">
+        <h3>Dosen Pengampu :</h3>
+        <h3>Andrey Kartika Widhy Hapantenda, S.Kom., M.Kom.</h3>
+      </div>
+    </div>
+
+    <div
+      class="flex w-full bg-white p-8 rounded-lg mt-8 badge bg-primary align-self-start flex-fill text-2xl font-bold mb-8"
+    >
+      <form action="{{ url_for('predict_feedforward') }}" method="post" class="w-full">
+        <h3>Silahkan masukkan data Anda :</h3>
+        <hr />
+        <div class="mb-10 mt-4">
+          <label
+            for="d1"
+            class="block mb-2 text-base font-bold text-gray-900 dark:text-white"
+            >1. Umur</label
+          >
+          <input
+            id="d1"
+            name="d1"
+            type="number"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          >
+        </div>
+        <div class="mb-10 mt-4">
+          <label
+            for="d2"
+            class="block mb-2 text-base font-bold text-gray-900 dark:text-white"
+            >2. Jenis Kelamin</label
+          >
+          <select
+            id="d2"
+            name="d2"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          >
+            <option selected value="0">Perempuan</option>
+            <option value="1">Laki-laki</option>
+          </select>
+        </div>
+        <div class="mb-10 mt-4">
+          <label
+            for="d3"
+            class="block mb-2 text-base font-bold text-gray-900 dark:text-white"
+            >3. Jenis Nyeri Dada</label
+          >
+          <select
+            id="d3"
+            name="d3"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          >
+            <option selected value="0">Typical Angina</option>
+            <option value="1">Atypical Angina</option>
+            <option value="2">Non-anginal Pain</option>
+            <option value="3">Asymptomaic</option>
+          </select>
+        </div>
+
+        <div class="mb-10 mt-4">
+          <label
+            for="d4"
+            class="block mb-2 text-base font-bold text-gray-900 dark:text-white"
+            >4. Tekanan Darah Istirahat Pasien (mmHg)</label
+          >
+
+          <input
+            id="d4"
+            name="d4"
+            type="number"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        </div>
+
+        <div class="mb-10 mt-4">
+          <label
+            for="d5"
+            class="block mb-2 text-base font-bold text-gray-900 dark:text-white"
+            >5. Kolestrol Serum (mg/L)</label
+          >
+          <input
+            id="d5"
+            name="d5"
+            type="number"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        </div>
+
+        <div class="mb-10 mt-4">
+          <label
+            for="d6"
+            class="block mb-2 text-base font-bold text-gray-900 dark:text-white"
+            >6. Gula Darah Puasa Pasien</label
+          >
+          <select
+            id="d6"
+            name="d6"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          >
+            <option selected value="0">> 120 mg/dL</option>
+            <option value="1">< 120 mg/dL</option>
+          </select>
+        </div>
+
+        <div class="mb-10 mt-4">
+          <label
+            for="d7"
+            class="block mb-2 text-base font-bold text-gray-900 dark:text-white"
+            >7. Detak Jantung yang Tercapai</label
+          >
+          <input
+            id="d7"
+            name="d7"
+            type="number"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        </div>
+
+        <button
+          type="submit"
+          class="flex justify-center text-md align-center mt-8 p-2 bg-blue-800 text-white rounded-md"
+        >
+          <span class="text-lg">Prediksi</span>
+        </button>
+      </form>
+    </div>
+
+    <div class="d-flex flex-column justify-around bg-white p-8 rounded-lg mt-8">
+      <h3
+        class="badge bg-primary align-self-start flex-column text-3xl font-bold mb-8"
+      >
+       Prediksi Terkena Serangan Jantung :
+      </h3>
+      <h2 class="text-5xl font-bold">{{ output }}</h2>
+
+      <h3 class="mt-8">
+        <p class="block mb-2 text-base font-bold text-gray-900 dark:text-white">
+          Dimana diketahui data yang anda masukkan adalah :
+        </p>
+        <table>
+          <tr>
+            <td>1. Umur</td>
+            <td class="px-2">:</td>
+            <td>{{d1}}</td>
+          </tr>
+          <tr>
+            <td>2. Jenis Kelamin</td>
+            <td class="px-2">:</td>
+            <td>{{d2}}</td>
+          </tr>
+          <tr>
+            <td>3. Jenis Nyeri Dada</td>
+            <td class="px-2">:</td>
+            <td>{{d3}}</td>
+          </tr>
+          <tr>
+            <td>4. Tekanan Darah Istirahat Pasien</td>
+            <td class="px-2">:</td>
+            <td>{{d4}}</td>
+          </tr>
+          <tr>
+            <td>5. Kolestrol Serum</td>
+            <td class="px-2">:</td>
+            <td>{{d5}}</td>
+          </tr>
+          <tr>
+            <td>6. Gula Darah Puasa Pasien</td>
+            <td class="px-2">:</td>
+            <td>{{d6}}</td>
+          </tr>
+          <tr>
+            <td>7. Detak Jantung yang Tercapai</td>
+            <td class="px-2">:</td>
+            <td>{{d7}}</td>
+          </tr>
+        </table>
+      </h3>
+    </div>
+    <div class="flex justify-around bg-white p-4 rounded-lg mt-8">
+      <span class="text-base font-bold text-gray-900 dark:text-white">Made with a lot of ❤️</span>
+    </div>
+  </body>
+</html>
